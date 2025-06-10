@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Production Server",
+    "cpu": 45,
+    "ram": 70,
+    "status": "online"
+  },
+  {
+    "id": "2",
+    "name": "Staging Server",
+    "cpu": 15,
+    "ram": 30,
+    "status": "online"
+  },
+  {
+    "id": "3",
+    "name": "Backup Server",
+    "cpu": 5,
+    "ram": 10,
+    "status": "offline"
+  }
+]
