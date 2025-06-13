@@ -8,8 +8,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useServersStore } from "~/stores/useServersStore";
+
 const serversStore = useServersStore();
 const { servers } = storeToRefs(serversStore);
 

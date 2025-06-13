@@ -1,22 +1,5 @@
 import { defineStore } from "pinia";
-import servers from "~/public/servers.json";
-
-export const useServersStore = defineStore("servers", {
-  state: () => ({
-    servers: [] as Server[],
-  }),
-  actions: {
-    async fetchServers() {
-      // Замените на ваш API
-      // const { data } = await useFetch("~/public/servers.json");
-      const data = servers;
-      console.log(data);
-      if (data) {
-        this.servers = data as Server[];
-      }
-    },
-  },
-});
+import serversData from "~/public/servers.json";
 
 interface Server {
   id: string;
@@ -24,3 +7,25 @@ interface Server {
   cpu: number;
   ram: number;
 }
+
+let subscribed = false;
+
+export const useServersStore = defineStore("servers", () => {
+  const servers = ref<Server[]>([]);
+
+  const fetchServers = () => {
+    if (subscribed) return;
+    subscribed = true;
+    const { $channel } = useNuxtApp();
+    $channel.bind("server-update", (data: Server[]) => {
+      if (data) {
+        servers.value = data;
+      }
+    });
+  };
+
+  return {
+    servers,
+    fetchServers,
+  };
+});

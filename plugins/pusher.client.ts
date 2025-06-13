@@ -22,6 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       pusher,
+      channel,
     },
   };
 });
