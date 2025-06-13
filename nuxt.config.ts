@@ -4,4 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/ui", "@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
+  runtimeConfig: {
+    public: {
+      PUSHER_KEY: process.env.NUXT_PUBLIC_PUSHER_KEY,
+      PUSHER_CLUSTER: process.env.NUXT_PUBLIC_PUSHER_CLUSTER,
+    },
+  },
 });
